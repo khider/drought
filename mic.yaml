@@ -1,0 +1,93 @@
+step: 2
+name: drought
+docker_image: drought:latest
+framework: !!python/object/apply:mic.constants.Framework
+- !!python/tuple
+  - general
+  - mintproject/generic:latest
+container_name: drought_2b58d1f3
+parameters:
+  dataset_type:
+    name: dataset_type
+    default_value: GLDAS
+    type: str
+    description: The type of input dataset (necessary to select the proper pre-processing)
+  index:
+    name: index
+    default_value: SPI
+    type: str
+    description: 'Index: Either SPI or SPEI'
+  distribution:
+    name: distribution
+    default_value: gamma
+    type: str
+    description: Either "gamma" or "pearson"
+  scales:
+    name: scales
+    default_value: 6
+    type: int
+    description: Either "6" or "12" month
+  sim_start_year:
+    name: sim_start_year
+    default_value: 2015
+    type: int
+    description: The year for which to start calculating the Index
+  sim_end_year:
+    name: sim_end_year
+    default_value: 2016
+    type: int
+    description: The year for which to end the calculation
+  calib_start_year:
+    name: calib_start_year
+    default_value: 2000
+    type: int
+    description: The end year for the calibration.
+  calib_end_year:
+    name: calib_end_year
+    default_value: 2010
+    type: int
+    description: The end year for the calibration.
+  global:
+    name: global
+    default_value: false
+    type: bool
+    description: Whether to do this globally
+  min_lon:
+    name: min_lon
+    default_value: 23
+    type: int
+    description: Minimum longitude
+  max_lon:
+    name: max_lon
+    default_value: 48
+    type: int
+    description: Maximum Longitude
+  min_lat:
+    name: min_lat
+    default_value: 3
+    type: int
+    description: Minimum Latitude
+  max_lat:
+    name: max_lat
+    default_value: 15
+    type: int
+    description: Maximum Latitude
+configs:
+  config_json:
+    path: config.json
+    format: json
+inputs:
+  input_nc:
+    path: GLDAS2.1_TP_2000_2018.nc
+    format: nc
+code_files:
+  wm_climate_indices_py:
+    path: WM_climate_indices.py
+    format: py
+outputs:
+  results_nc:
+    path: results/results.nc
+    format: nc
+  results_mp4:
+    path: results/results.mp4
+    format: mp4

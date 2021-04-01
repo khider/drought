@@ -1,0 +1,30 @@
+{
+"data" :
+  {
+  "dataset_name" : "/tmp/mint/mic/executions/04_01_20_35_55/src/GLDAS2.1_TP_2000_2018.nc",
+  "dataset_type" : "GLDAS"
+},
+"output" :
+  {
+  "dynamic_name": "False",
+  "path" : "./",
+  "fig" : "True"
+},
+"index" :
+  {
+  "name" : "SPI",
+  "distribution" : "gamma",
+  "periodicity" : "monthly",
+  "scales" : "6",
+  "data_start_year" : "2015",
+  "data_end_year" : "2016",
+  "calibration_start_year" : "2000",
+  "calibration_end_year" : "2010"
+},
+"spatial" :
+  {
+  "global" : "False",
+  "bounding_box": "[23,48,3,15]"
+},
+"debug" : "False"
+}

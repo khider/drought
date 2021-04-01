@@ -1,0 +1,42 @@
+#!/bin/bash
+set +x
+set -e
+. .colors.sh
+
+BASEDIR=$PWD
+. $BASEDIR/io.sh 1 13 2 "$@"
+CURDIR=`pwd`
+## INPUTS VARIABLES
+input_nc=${INPUTS1}
+
+
+## PARAMETERS VARIABLES
+dataset_type=${PARAMS1}
+index=${PARAMS2}
+distribution=${PARAMS3}
+scales=${PARAMS4}
+sim_start_year=${PARAMS5}
+sim_end_year=${PARAMS6}
+calib_start_year=${PARAMS7}
+calib_end_year=${PARAMS8}
+global=${PARAMS9}
+min_lon=${PARAMS10}
+max_lon=${PARAMS11}
+min_lat=${PARAMS12}
+max_lat=${PARAMS13}
+
+
+set -xe
+
+####### WRITE YOUR INVOCATION LINE AFTER THIS COMMENT
+
+    
+pushd .
+python3 WM_climate_indices.py config.json
+popd
+
+set +x
+echo -e "$(c G)[success] The model has exited with code SUCCESS"
+####### WRITE YOUR INVOCATION LINE BEFORE THIS COMMENT
+cd $BASEDIR
+. $BASEDIR/output.sh
